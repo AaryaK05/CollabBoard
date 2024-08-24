@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* HEADER */
+.header{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content:right;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.075);
+}
+
+#leave-btn{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 2px 15px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+/* chat */
+.chat{
+  position: absolute;
+  margin-bottom: 0;
+  margin-top: calc(100vh - 381px);
+  margin-left: calc(100vw - 400px);
+  transition:  .5s;
+  z-index: 6;
+  width: 0;
+  right: 0;
+  height: 330px;
+  background-color: white;
+}
+
+#open-chat-btn{
+  position: absolute;
+  margin-bottom: 0;
+  margin-top: calc(100vh - 70px);
+  margin-left: calc(100vw - 500px);
+}
+
+/* message body */
+.messagebody{
+  width: 100%;
+  height: 90%;
+  border: 1px solid black;
+}
+
+.chat-body{
+  display: flex;
+  gap: 2px;
+}
+
+#sender-name{
+  color: red;
+}
+
+
+/* MESSAGE BOX */
+.messagebox{
+  width: 100%;
+  height: 10%;
+  display: flex;
+}
+
+#message-text{
+  width: 90%;
+}
+
+#send-btn{
+  width: 10%;
+}
+
+/* Side Bar */           
+.sidebar{
+  width: 200px;
+  height: 80vh;
+  text-align: center;
+  border-right: 1px solid gray;
+}
+
+
+/* main */
+.main-flex{
+  display: flex;
+}
+
+/* CaNVAS */
+#clear-canvas-btn{
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  margin-left: calc(100vw - 130px);
+  margin-top: 20px;
+}
+
+canvas{
+  border: 1px solid black;
+}
+
+/*HIDE*/
+.hide{
+  visibility: hidden ;
+}
+
+/*HOME */
+.home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  background-color: plum;
+}
+
+.home-container{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 20px;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.582);
+}
+
+#login-text{
+  font-size: 2rem;
+}
+
+.home-text{
+  font-size: 1.2rem;
+}
+
+.home-btns{
+  margin-top: 5px;
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+.home-btns:hover{
+  cursor: pointer;
+}
