@@ -12,7 +12,7 @@ app.use(cors());
 const server=http.createServer(app);
 const io=new Server(server,{
     cors:{
-        origin:'http://localhost:3001'
+        origin:'https://whiteboard-collab-u87n.onrender.com'
     }                                      
 });
 
