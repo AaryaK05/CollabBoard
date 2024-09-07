@@ -1,7 +1,7 @@
 # REAL TIME COLLABORATIVE DRAWING APP
 ---
-![Whiteboard_login](https://github.com/user-attachments/assets/3bc62e6e-d201-4a08-8939-a1d4901f0148)
----
-https://github.com/user-attachments/assets/21283d7d-d6cf-4ded-824b-0889dd91f27e
+
+<img src="https://github.com/user-attachments/assets/3bc62e6e-d201-4a08-8939-a1d4901f0148" width="800" height="400">
+<img src="https://github.com/user-attachments/assets/039855ce-09cf-43de-816e-bd753479d94a" width="800" height="400">
 
 
