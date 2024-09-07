@@ -87,8 +87,11 @@ function Board({socket}) {
       <canvas
         ref={canvasRef}
         onMouseDown={startDrawing}
+        onTouchStart={startDrawing}
         onMouseUp={finishDrawing}
+        onTouchEnd={finishDrawing}
         onMouseMove={draw}
+        onTouchMove={draw}
         id='canvas'
       />
       <button id='clear-canvas-btn' onClick={handleClear}>Clear</button>
