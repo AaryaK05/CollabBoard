@@ -7,6 +7,8 @@ function Chat({ socket }) {
   const [isOpen,setIsOpen]=useState(false);
   const [newMsgNotification,setNewMsgNotification]=useState(false);
 
+  console.log(window.innerWidth);
+
   const openChat = () => {
     const chatObj = document.getElementById('chat');
     console.log(chatObj);
@@ -18,7 +20,12 @@ function Chat({ socket }) {
     }else{
       setIsOpen(true);
       chatObj.classList.remove('hide');
-      chatObj.style.width='400px';
+      if(window.innerWidth>=800){
+        chatObj.style.width='400px';
+      }else if(window.innerWidth<800){
+        const windowsize=window.innerWidth - 50;
+        chatObj.style.width=`${windowsize}px`;
+      }
       setNewMsgNotification(false);
     }
   }
