@@ -18,7 +18,7 @@ code {
   width: 100%;
   height: 50px;
   display: flex;
-  justify-content:right;
+  justify-content:space-between;
   border-bottom: 0.1px solid rgba(0, 0, 0, 0.075);
 }
 
@@ -37,29 +37,47 @@ code {
 
 /* chat */
 .chat{
-  position: absolute;
-  margin-bottom: 0;
-  margin-top: calc(100vh - 381px);
-  margin-left: calc(100vw - 400px);
-  transition:  .5s;
-  z-index: 6;
+  position: fixed;
   width: 0;
-  right: 0;
   height: 330px;
+  right: 0;
+  margin-right: 10px;
+  bottom: 0;
+  margin-bottom: 30px;
+  z-index: 6;
+  transition:  .5s;
   background-color: white;
 }
 
+.chat-header{
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 2px 0px;
+  width: 392px;
+  padding-left: 10px;
+}
+
 #open-chat-btn{
-  position: absolute;
-  margin-bottom: 0;
-  margin-top: calc(100vh - 70px);
-  margin-left: calc(100vw - 500px);
+  position: fixed;
+  padding: 5px;
+  width: 100px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  bottom: 0;
+  margin-bottom: 10px;
+  right: 0;
+  margin-right: 10px;
 }
 
 /* message body */
 .messagebody{
   width: 100%;
   height: 90%;
+  overflow: scroll;
   border: 1px solid black;
 }
 
@@ -88,14 +106,55 @@ code {
   width: 10%;
 }
 
-/* Side Bar */           
+/* Side Bar */   
+#show-users{
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
 .sidebar{
-  width: 200px;
-  height: 80vh;
+  width: 0px;
+  height: 100vh;
+  transition: .5s;
+  position: fixed;
+  z-index: 6;
+  background-color: black;
+  color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 10px;
   border-right: 1px solid gray;
 }
 
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.closebtn{
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.sidebar p{
+  transition: .1s;
+}
 
 /* main */
 .main-flex{
@@ -106,6 +165,12 @@ code {
 #clear-canvas-btn{
   width: 100px;
   height: 30px;
+  padding: 5px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  cursor:pointer;
   position: absolute;
   margin-left: calc(100vw - 130px);
   margin-top: 20px;
@@ -160,4 +225,15 @@ canvas{
 
 .home-btns:hover{
   cursor: pointer;
+}
+
+#new-notification{
+  background-color: red;
+  z-index: 1;
+  position: absolute;
+  right: 90px;
+  bottom: 19px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
 }

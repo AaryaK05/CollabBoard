@@ -4,11 +4,17 @@ import { useParams } from 'react-router-dom';
 export default function ChatFooter({socket,messages}) {
     const [msg,setMsg]=useState('');
 
-    const handleSendMsg=(e)=>{
-      e.preventDefault();
+  
+
+    const handleSendMsg=()=>{
+      // e.preventDefault();
       const username=localStorage.getItem('Username');
-      socket.emit('NewMessage',{name:username,msg:msg,messages})
+      const room=localStorage.getItem('room');
+
+      socket.emit('Message',
+        {name:username,msg:msg,messages})
       setMsg('');
+      document.getElementById('message-text').focus();
     }
 
   return (
@@ -20,6 +26,7 @@ export default function ChatFooter({socket,messages}) {
             placeholder='send message...'
             value={msg}
             onChange={(e)=>setMsg(e.target.value)}
+            
         />
         <button id='send-btn' onClick={handleSendMsg}>Send</button>
     </div>

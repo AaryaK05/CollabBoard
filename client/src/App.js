@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home socket={socket}/>}/>
-        <Route path='/chat/:id' element={<Main socket={socket}/>}/>
+        <Route path='/chat' element={<Main socket={socket}/>}/>
       </Routes>
     </BrowserRouter>
   );
