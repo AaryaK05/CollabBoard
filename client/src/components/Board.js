@@ -54,6 +54,14 @@ function Board({socket}) {
     
     setIsDrawing(true);
   }
+
+  const startDrawingTouch = ({ nativeEvent }) => {
+    const { touches } = nativeEvent;
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(touches[0].clientX, touches[0].clientY);
+    setIsDrawing(true);
+  }
+
   
   const finishDrawing = () => {
     contextRef.current.closePath();
@@ -69,8 +77,19 @@ function Board({socket}) {
     if (!isDrawing) {
       return;
     }
+    console.log(nativeEvent);
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.lineTo(offsetX, offsetY);
+    contextRef.current.stroke();
+  }
+
+  const touchDraw=({nativeEvent})=>{
+    if (!isDrawing) {
+      return;
+    }
+    console.log(nativeEvent);
+    const { touches } = nativeEvent;
+    contextRef.current.lineTo(touches[0].clientX, touches[0].clientY);
     contextRef.current.stroke();
   }
   
@@ -87,11 +106,11 @@ function Board({socket}) {
       <canvas
         ref={canvasRef}
         onMouseDown={startDrawing}
-        onTouchStart={startDrawing}
+        onTouchStart={startDrawingTouch}
         onMouseUp={finishDrawing}
         onTouchEnd={finishDrawing}
         onMouseMove={draw}
-        onTouchMove={draw}
+        onTouchMove={touchDraw}
         id='canvas'
       />
       <button id='clear-canvas-btn' onClick={handleClear}>Clear</button>
