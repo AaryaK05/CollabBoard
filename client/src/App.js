@@ -3,7 +3,7 @@ import {io} from 'socket.io-client';
 import Home from './pages/Home';
 import Main from './pages/Main';
 
-const socket=io('http://localhost:5000');
+const socket=io('https://whiteboard-collab-ucab.onrender.com');
 
 function App() {
   return (
