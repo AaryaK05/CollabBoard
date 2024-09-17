@@ -12,7 +12,7 @@ app.use(cors());
 const server=http.createServer(app);
 const io=new Server(server,{
     cors:{
-        origin:'https://whiteboard-collab-blue.vercel.app'
+        origin:'https://whiteboard-collab-u87n.onrender.com'
     }                                      
 });
 
