@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 function Board({socket}) {
-  const canvasRef = useRef(null);//object reference with properties passed to a given object
+  const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
   const [isDrawing, setIsDrawing] = useState(false);//state variable to check whether user is drawing or not
@@ -9,7 +9,6 @@ function Board({socket}) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    // const context = canvas.getContext('2d');
 
     const resizeCanvas = () => {
       if (!canvas) return;
@@ -40,10 +39,8 @@ function Board({socket}) {
       context.drawImage(tempCanvas, 0, 0);
     };
 
-    resizeCanvas(); // Initial setup
+    resizeCanvas(); 
     window.addEventListener('resize', resizeCanvas);
-
-  
 
     // Cleanup
     return () => {

@@ -4,7 +4,6 @@ export default function ChatFooter({ socket, messages }) {
   const [msg, setMsg] = useState("");
 
   const handleSendMsg = () => {
-    // e.preventDefault();
     const username = localStorage.getItem("Username");
 
     socket.emit("Message", { name: username, msg: msg, messages });
@@ -21,6 +20,9 @@ export default function ChatFooter({ socket, messages }) {
         placeholder="Type a message..."
         value={msg}
         onChange={(e) => setMsg(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSendMsg();
+        }}
       />
       <button id="send-btn" onClick={handleSendMsg}>
         ➤

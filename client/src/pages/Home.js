@@ -46,6 +46,9 @@ function Home({ socket }) {
               type="text"
               value={room}
               onChange={(e) => setRoom(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleJoin(e); 
+              }}
               placeholder="Enter room ID"
               maxLength="20"
               required
