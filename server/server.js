@@ -1,5 +1,5 @@
 import express from 'express';
-import http from 'http';
+import https from 'https';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import { addUser, getUser, deleteUser, getUsers } from './users.js';
@@ -12,7 +12,7 @@ app.use(cors());
 const server=http.createServer(app);
 const io=new Server(server,{
     cors:{
-        origin:'https://whiteboard-collab-u87n.onrender.com '
+        origin:'https://whiteboard-collab-u87n.onrender.com'
     }                                      
 });
 
@@ -85,5 +85,5 @@ server.listen(port,()=>{
 })
 
 setInterval(() => {
-    http.get('https://whiteboard-collab-ucab.onrender.com');
-  }, 5 * 60 * 1000); // Ping every 5 minutes
+    https.get('https://whiteboard-collab-ucab.onrender.com');
+  }, 5 * 60 * 1000); 
