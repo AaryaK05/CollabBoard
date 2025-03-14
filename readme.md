@@ -2,8 +2,8 @@
 # 🖌️ A Real Time Collaborative Whiteboard
 A Real-time collaborative whiteboard with chat using Socket.IO and React.
 
-<img src="https://github.com/user-attachments/assets/3bc62e6e-d201-4a08-8939-a1d4901f0148" width="800" height="400">
-<img src="https://github.com/user-attachments/assets/039855ce-09cf-43de-816e-bd753479d94a" width="800" height="400">
+<img src="https://github.com/user-attachments/assets/9bfbe570-1f36-4f8c-b409-1314a4d667ca" width="700" height="400"  loading="lazy">
+<img src="https://github.com/user-attachments/assets/039855ce-09cf-43de-816e-bd753479d94a" width="700" height="400"  loading="lazy">
 
 ## How to run locally
 1. Clone the repo.
