@@ -1,9 +1,9 @@
 import express from 'express';
-import http, { get } from 'http';
+import http from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import { addUser, getUser, deleteUser, getUsers } from './users.js';
-import { error } from 'console';
+
 
 const app=express();
 const port=5000;
@@ -12,7 +12,7 @@ app.use(cors());
 const server=http.createServer(app);
 const io=new Server(server,{
     cors:{
-        origin:'https://whiteboard-collab-u87n.onrender.com'
+        origin:'https://whiteboard-collab-u87n.onrender.com '
     }                                      
 });
 
@@ -21,28 +21,10 @@ io.on('connection',(socket)=>{
 
     socket.on('login',({SocketID,name,room},callback)=>{
         const user=addUser(SocketID,name,room);
-        // if(user.error){
-        //     socket.emit('loginError',{error:user.error});
-        // }
         socket.broadcast.emit('newUser',{name:name});
         const allUsers=getUsers(room);
         io.emit('getAllUsers',{room,allUsers})
-        // console.log(allUsers);
-        // console.log(user);
     })
-    
-    // socket.on('login',({SocketID,name,room},callback)=>{
-    //     const user=addUser(SocketID,name,room);
-    //     // if(user.error){
-    //     //     socket.emit('loginError',{error:user.error});
-    //     // }
-    //     socket.broadcast.emit('newUser',{name:name});
-    //     const allUsers=getUsers(room);
-    //     io.emit('getAllUsers',{room,allUsers})
-    //     // console.log(allUsers);
-    //     // console.log(user);
-    // })
-
     
    
     socket.on('Message',(data)=>{
@@ -52,9 +34,6 @@ io.on('connection',(socket)=>{
 
         const user=getUser(socket.id);
         const room=user.room;
-
-        // console.log(room);
-        // console.log(name+ '/'+ message+'/'+AllMessages);
         
         AllMessages.push({
             name:name,
@@ -67,9 +46,6 @@ io.on('connection',(socket)=>{
     socket.on('image-data',(data)=>{
         const user=getUser(socket.id);
         const room=user.room;
-        // console.log(room);
-        // console.log(data);
-        // socket.to(room).emit('image-data-2',data);
         io.except(user).emit('image-data',{room,data});
     })
 
@@ -107,3 +83,7 @@ app.get('/',(req,res)=>{
 server.listen(port,()=>{
     console.log(`Server started on port ${port}`);
 })
+
+setInterval(() => {
+    http.get('https://whiteboard-collab-ucab.onrender.com');
+  }, 5 * 60 * 1000); // Ping every 5 minutes

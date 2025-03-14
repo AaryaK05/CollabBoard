@@ -6,16 +6,6 @@ function Home({ socket }) {
   const [room, setRoom] = useState('');
   const navigate = useNavigate();
 
-  // const handleCreate = (e) => {
-  //   e.preventDefault();
-  //   if(!name.trim()){
-  //     alert('username is empty');
-  //     return;
-  //   }
-  //   localStorage.setItem('Username', name);
-  //   socket.emit('NewUserCreate', { name, SocketID: socket.id })
-  //   navigate(`/chat`);
-  // }
 
   const handleJoin = (e) => {
     e.preventDefault();
@@ -33,47 +23,39 @@ function Home({ socket }) {
     navigate(`/chat`);
   }
 
-  // const handleCreate=(e)=>{
-  //   e.preventDefault();
-  //   if(!name.trim()){
-  //     alert('username is empty');
-  //     return;
-  //   }
-  //   if(!room.trim()){
-  //     alert('Enter room id');
-  //     return;
-  //   }
-  //   localStorage.setItem('Username', name);
-  //   localStorage.setItem('room', room);
-  //   socket.emit('create', { SocketID: socket.id,name, room: room })
-  //   navigate(`/chat`);
-  // }
 
   return (
-    <div className='home'>
-      <div className='home-container'>
-        <p id='login-text'>LOG IN</p>
-        <p className='home-text'>Username:</p>
-        <input
-          type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {/* <button onClick={handleCreate} className='home-btns'>Create</button> */}
-        {/* <p>OR</p> */}
-        <p  className='home-text'>Room id:</p>
-        <input
-          type='text'
-          value={room}
-          onChange={(e) => setRoom(e.target.value)}
-          maxLength='20'
-        />
-        <button onClick={handleJoin} className='home-btns'>Join</button>
-        {/* <p>Or</p>
-        <button onClick={handleCreate} className='home-btns'>Create</button> */}
+    <div className="home">
+      <div className="home-container">
+        <h2 id="login-text">Log In</h2>
+        <form className="home-form" onSubmit={handleJoin}>
+          <div className="input-group">
+            <label className="home-text">Username:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+              maxLength={4}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label className="home-text">Room ID:</label>
+            <input
+              type="text"
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+              placeholder="Enter room ID"
+              maxLength="20"
+              required
+            />
+          </div>
+          <button type="submit" className="home-btns">Join</button>
+        </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default Home

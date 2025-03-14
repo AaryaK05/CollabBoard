@@ -8,28 +8,52 @@ function Board({socket}) {
 
 
   useEffect(() => {
-    const canvas = canvasRef.current;//the .current holds the canvas object
-    console.log(window.innerHeight+'/'+window.innerWidth);
-    canvas.width = window.innerWidth;
-    canvas.height =window.innerHeight ;// actual height and width
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;// height and width of coordinate system
-    
-    const context = canvas.getContext('2d');
-    context.scale(1,1);
+    const canvas = canvasRef.current;
+    // const context = canvas.getContext('2d');
 
-    context.lineCap = 'round';
-    context.strokeStyle = 'black';
-    context.lineWidth = 5;
-    
-    contextRef.current = context;
-  }, [])
+    const resizeCanvas = () => {
+      if (!canvas) return;
 
+      // Save current canvas content
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempContext = tempCanvas.getContext('2d');
+      tempContext.drawImage(canvas, 0, 0);
+
+      // Resize canvas based on device pixel ratio
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+
+      // Scale for high DPI screens
+      const context = canvas.getContext('2d');
+      context.scale(dpr, dpr);
+      context.lineCap = 'round';
+      context.strokeStyle = 'black';
+      context.lineWidth = 5;
+      contextRef.current = context;
+
+      // Restore previous state
+      context.drawImage(tempCanvas, 0, 0);
+    };
+
+    resizeCanvas(); // Initial setup
+    window.addEventListener('resize', resizeCanvas);
+
+  
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, [socket]);
     
   socket.on('image-data',(data)=>{
-    if(data.room == localStorage.getItem('room')){
+    if(data.room === localStorage.getItem('room')){
       const image= new Image();
-      console.log('Canvas data---'+data.data);
 
       image.onload=function(){
         const canvas = document.getElementById('canvas');
@@ -68,7 +92,6 @@ function Board({socket}) {
     setIsDrawing(false);
     const canvas = document.getElementById('canvas');
     const canvasUrl=canvas.toDataURL();
-    // console.log(canvasUrl);
     
     socket.emit('image-data',canvasUrl);
   }
@@ -77,7 +100,6 @@ function Board({socket}) {
     if (!isDrawing) {
       return;
     }
-    console.log(nativeEvent);
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
@@ -87,7 +109,7 @@ function Board({socket}) {
     if (!isDrawing) {
       return;
     }
-    console.log(nativeEvent);
+
     const { touches } = nativeEvent;
     contextRef.current.lineTo(touches[0].clientX, touches[0].clientY);
     contextRef.current.stroke();

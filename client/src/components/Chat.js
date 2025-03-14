@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ChatFooter from './ChatFooter.js';
 import ChatBody from './ChatBody.js';
 
@@ -7,11 +7,8 @@ function Chat({ socket }) {
   const [isOpen,setIsOpen]=useState(false);
   const [newMsgNotification,setNewMsgNotification]=useState(false);
 
-  console.log(window.innerWidth);
-
   const openChat = () => {
     const chatObj = document.getElementById('chat');
-    console.log(chatObj);
     if(isOpen){
       setIsOpen(false);
       chatObj.classList.add('hide');
@@ -30,21 +27,19 @@ function Chat({ socket }) {
     }
   }
 
-  // useEffect(() => {
     socket.on('AllMessages', (data) => {
-      if(data.room == localStorage.getItem('room')){
-        console.log(data);
+      if(data.room === localStorage.getItem('room')){
         setMessages(data.AllMessages);
         socket.emit('newMsgNotification');
       }
     })
 
     socket.on('newMsgNotificationSet',(data)=>{
-      if(data.room == localStorage.getItem('room')){
+      if(data.room === localStorage.getItem('room')){
         setNewMsgNotification(true);
       }
     })
-  // })
+
 
   return (<>
     <button onClick={openChat} id='open-chat-btn'>

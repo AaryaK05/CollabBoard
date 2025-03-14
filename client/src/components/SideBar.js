@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-
-export default function SideBar({socket}) {
+export default function SideBar({ socket }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [allUsers,setAllUsers]=useState([]);
-
-  
+  const [allUsers, setAllUsers] = useState([]);
 
   // useEffect(()=>{
-    socket.on('getAllUsers',(data)=>{
-      if(data.room == localStorage.getItem('room')){
-        console.log(data.allUsers);
-        setAllUsers(data.allUsers);
-      }
-    })
-   
+  socket.on("getAllUsers", (data) => {
+    if (data.room === localStorage.getItem("room")) {
+      setAllUsers(data.allUsers);
+    }
+  });
+
   // },[allUsers,socket]);
 
- 
   const handleShowUsers = (e) => {
     const sideBar = document.getElementById("sidebar");
     if (isOpen) {
@@ -35,19 +30,22 @@ export default function SideBar({socket}) {
       <span id="show-users" onClick={handleShowUsers}>
         &#9776;
       </span>
-      <div className="sidebar hide" id="sidebar">
-        <span class="closebtn" onClick={handleShowUsers}>
+      <div className={`sidebar ${isOpen ? "open" : ""}`} id="sidebar">
+        <span className="close-btn" onClick={handleShowUsers}>
           &times;
         </span>
-        <p>Users</p>
-        {allUsers.map((a)=>{
-          console.log(allUsers);
-          return(
-            <p>{a.name}</p>
-          )
-        })}
-        <p>Room id:{localStorage.getItem('room')}</p>
-     
+        <h2>Active Users</h2>
+        <div className="user-list">
+          {allUsers.map((a, index) => (
+            <div key={index} className="user-item">
+              <span className="user-icon">👤</span>
+              {a.name}
+            </div>
+          ))}
+        </div>
+        <div className="room-id">
+          <strong>Room ID:</strong> {localStorage.getItem("room")}
+        </div>
       </div>
     </>
   );
