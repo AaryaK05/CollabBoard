@@ -1,5 +1,5 @@
 import express from 'express';
-import https from 'https';
+import http from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import { addUser, getUser, deleteUser, getUsers } from './users.js';
@@ -84,8 +84,5 @@ server.listen(port,()=>{
     console.log(`Server started on port ${port}`);
 })
 
-setInterval(() => {
-    https.get('https://whiteboard-collab-ucab.onrender.com');
-  }, 5 * 60 * 1000); 
 
 app.get('/ping', (req, res) => res.sendStatus(200));
