@@ -85,4 +85,8 @@ server.listen(port,()=>{
 })
 
 
-app.get('/ping', (req, res) => res.sendStatus(200));
+app.get('/ping', (req, res) => {
+  console.log('Ping received');
+  res.sendStatus(200);
+});
+
