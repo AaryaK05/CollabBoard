@@ -87,3 +87,5 @@ server.listen(port,()=>{
 setInterval(() => {
     https.get('https://whiteboard-collab-ucab.onrender.com');
   }, 5 * 60 * 1000); 
+
+app.get('/ping', (req, res) => res.sendStatus(200));
